@@ -52,7 +52,7 @@ public class TokenProvider {
 
     public Authentication getAuthentication(String token){
         Claims claims=getClaims(token);
-        String email= claims.getSubject();
+        String email= claims.getSubject();//@AuthenticationPrincipal 사용을 위해 필수
         Set<SimpleGrantedAuthority> authorities= Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
         return new UsernamePasswordAuthenticationToken(email,token,authorities);
     }
