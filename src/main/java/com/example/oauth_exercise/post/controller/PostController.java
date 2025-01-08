@@ -20,14 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostController {
     private final PostService postService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<PostResponseDTO>createPost(@RequestBody PostRequestDTO requestDTO, @AuthenticationPrincipal String email){
         PostResponseDTO post=postService.createPost(requestDTO,email);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(post);
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<List<PostResponseDTO>>getAllPosts(){
         List<PostResponseDTO>posts=postService.findAll();
         return ResponseEntity.ok()
